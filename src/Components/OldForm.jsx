@@ -30,7 +30,7 @@ function GridBasicExample() {
 
   return (
     <>
-      <h1 className="text-center">Old One</h1>
+      <h1 className="text-center">Old test</h1>
       <div className="text-center">
         <Row className="mb-3 mx-1">
           <Form.Group as={Col} controlId="formGridEmail">

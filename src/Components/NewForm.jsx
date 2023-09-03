@@ -5,57 +5,86 @@ import Row from "react-bootstrap/Row";
 
 function NewForm() {
   const [formData, setFormData] = useState({
-    high: "",
-    low: "",
+    Newhigh: "",
+    Newlow: "",
   });
+
+  const [finalH, setFinalH] = useState("");
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "high") {
-      const newHigh = parseInt(value);
-      const newLow = 100 - newHigh;
-
-      setFormData({
-        ...formData,
-        high: newHigh.toString(),
-        low: newLow.toString(),
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    console.log(formData);
   };
 
+  useEffect(()=>{
+   if (formData.Newhigh == "" || formData.Newlow == "") {
+      return setFinalH("בבקשה להכניס ערך ");
+    }
+
+    const regex = /^-?\d+(\.\d+)?$/;
+
+    if (regex.test(formData.Newhigh) && regex.test(formData.Newlow)) {  
+        
+        const finalData = (70 * parseFloat(formData.Newhigh) + 40 * parseFloat(formData.Newlow))/100;
+
+    setFinalH(finalData);
+    }else{
+        return setFinalH("הזנת מידע שגוי")
+    }
+
+  },[formData])
+
+ 
+  
+
   return (
-    <Form>
-      <Row>
-        <Col>
-          <Form.Group>
-            <Form.Label>High Value</Form.Label>
+    <>
+      <h3 className="text-center">New Result</h3>
+      <div className="text-center">
+        <Row className="mb-3 mx-1">
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>70</Form.Label>
             <Form.Control
               type="text"
-              name="high"
-              value={formData.high}
+              placeholder="high"
+              name="Newhigh"
+              value={formData.Newhigh}
               onChange={handleOnChange}
             />
           </Form.Group>
-        </Col>
-        <Col>
-          <Form.Group>
-            <Form.Label>Low Value</Form.Label>
+
+          <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Label>40 </Form.Label>
             <Form.Control
               type="text"
-              name="low"
-              value={formData.low}
+              placeholder="קושי נמוך"
+              name="Newlow"
+              value={formData.Newlow}
               onChange={handleOnChange}
-              readOnly
             />
           </Form.Group>
-        </Col>
-      </Row>
-    </Form>
+        </Row>
+
+        <div className="container text-center">
+          <div className="row justify-content-evenly">
+            <div className="col-3">
+              <div className="text-primary text-result">קושי   </div>
+            </div>
+            <div className="col-6">
+              <div className="result p-1 text-danger">{finalH}</div>
+            </div>
+          </div>
+          <br />
+
+        </div>
+      </div>
+    </>
   );
 }
+
+export default NewForm;

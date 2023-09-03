@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -21,12 +21,26 @@ function GridBasicExample() {
     console.log(formData);
   };
 
-  const handleProcessData = () => {
-    const finalData =
-      70 * parseFloat(formData.high) + 40 * parseFloat(formData.low);
+  useEffect(()=>{
+   if (formData.high == "" || formData.low == "") {
+      return setFinalH("בבקשה להכניס ערך ");
+    }
+
+    const regex = /^-?\d+(\.\d+)?$/;
+
+    if (regex.test(formData.high) && regex.test(formData.low)) {  
+        
+        const finalData = 70 * parseFloat(formData.high) + 40 * parseFloat(formData.low);
 
     setFinalH(finalData);
-  };
+    }else{
+        return setFinalH("הזנת מידע שגוי")
+    }
+
+  },[formData])
+
+ 
+  
 
   return (
     <>
@@ -66,9 +80,7 @@ function GridBasicExample() {
             </div>
           </div>
           <br />
-          <button className="btn border border-danger-subtle" onClick={handleProcessData}>
-            Click For Result
-          </button>
+
         </div>
       </div>
     </>

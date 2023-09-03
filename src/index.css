@@ -2,4 +2,10 @@
   border: 1px solid rgb(210, 186, 186);
   height: 2rem;
   border-radius: 7px;
+  font-weight: 500;
+
+}
+
+.text-result{
+  font-size: 1.4rem;
 }

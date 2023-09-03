@@ -44,7 +44,7 @@ function GridBasicExample() {
 
   return (
     <>
-      <h1 className="text-center">Old test</h1>
+      <h3 className="text-center">Old test</h3>
       <div className="text-center">
         <Row className="mb-3 mx-1">
           <Form.Group as={Col} controlId="formGridEmail">
@@ -73,10 +73,10 @@ function GridBasicExample() {
         <div className="container text-center">
           <div className="row justify-content-evenly">
             <div className="col-3">
-              <div>קושי סופי </div>
+              <div className="text-primary text-result">קושי   </div>
             </div>
             <div className="col-6">
-              <div className="result">{finalH}</div>
+              <div className="result p-1 text-danger">{finalH}</div>
             </div>
           </div>
           <br />

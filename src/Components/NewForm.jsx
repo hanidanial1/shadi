@@ -6,9 +6,9 @@ import Row from "react-bootstrap/Row";
 function NewForm() {
   const [formData, setFormData] = useState({
     high: "",
-    low: 100,
+    low: "",
   });
- const [newlowdata, setnewlowdata]= useState()
+ 
 
   const [finalH, setFinalH] = useState("");
 
@@ -31,8 +31,8 @@ function NewForm() {
     const regex = /^-?\d+(\.\d+)?$/;
 
     if (regex.test(formData.high) && regex.test(formData.low)) {  
-        setnewlowdata(formData.low- formData.high)
-        const finalData = (70 * parseFloat(formData.high) + 40 * parseFloat(newlowdata))/100;
+        
+        const finalData = (70 * parseFloat(formData.high) + 40 * parseFloat(formData.low))/100;
 
     setFinalH(finalData);
     }else{

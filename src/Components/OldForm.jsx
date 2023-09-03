@@ -20,7 +20,11 @@ function GridBasicExample() {
     });
     console.log(formData);
   };
-
+<input 
+    type="text" 
+    value={formData.low} 
+    onChange={e => setFormData({ ...formData, low: 100 - formData  })} 
+/>
   useEffect(()=>{
    if (formData.high == "" || formData.low == "") {
       return setFinalH("בבקשה להכניס ערך ");

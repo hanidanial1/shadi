@@ -25,7 +25,7 @@ function NewForm() {
    if (formData.high == "" || formData.low == "") {
       return setFinalH("בבקשה להכניס ערך ");
     }
-    const formData.low = 100 - formData.high
+    const formData.low = 100 - formData.high;
 
     const regex = /^-?\d+(\.\d+)?$/;
 

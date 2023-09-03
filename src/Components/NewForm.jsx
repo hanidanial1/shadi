@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 function NewForm() {
   const [formData, setFormData] = useState({
     high: "",
-    low: "",
+    low: 100,
   });
 
   const [finalH, setFinalH] = useState("");

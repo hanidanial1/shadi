@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 function NewForm() {
   const [formData, setFormData] = useState({
     high: "",
-    low: "",
+    low: 100,
   });
 
   const [finalH, setFinalH] = useState("");
@@ -20,12 +20,12 @@ function NewForm() {
     });
     console.log(formData);
   };
+  
 
   useEffect(()=>{
    if (formData.high == "" || formData.low == "") {
       return setFinalH("בבקשה להכניס ערך ");
     }
-    const formData.low = 100 - formData.high;
 
     const regex = /^-?\d+(\.\d+)?$/;
 
@@ -64,7 +64,7 @@ function NewForm() {
             <Form.Control
               type="text"
               placeholder="קושי נמוך"
-              name="low"
+              
               value={formData["קושי נמוך"]}
               onChange={handleOnChange}
             />

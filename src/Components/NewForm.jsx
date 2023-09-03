@@ -30,7 +30,7 @@ function NewForm() {
 
     if (regex.test(formData.high) && regex.test(formData.low)) {  
         
-        const finalData = 70 * parseFloat(formData.high) + 40 * parseFloat(formData.low);
+        const finalData = (70 * parseFloat(formData.high) + 40 * parseFloat(formData.low))/100;
 
     setFinalH(finalData);
     }else{

@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 function NewForm() {
   const [formData, setFormData] = useState({
     high: "",
-    low: 100,
+    low: "",
   });
 
   const [finalH, setFinalH] = useState("");
@@ -25,6 +25,7 @@ function NewForm() {
    if (formData.high == "" || formData.low == "") {
       return setFinalH("בבקשה להכניס ערך ");
     }
+    const formData.low = 100 - formData.high
 
     const regex = /^-?\d+(\.\d+)?$/;
 

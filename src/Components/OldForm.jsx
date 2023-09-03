@@ -44,7 +44,7 @@ function GridBasicExample() {
 
   return (
     <>
-      <h3 className="text-center">Old test</h3>
+      <h3 className="text-center">Old Result</h3>
       <div className="text-center">
         <Row className="mb-3 mx-1">
           <Form.Group as={Col} controlId="formGridEmail">

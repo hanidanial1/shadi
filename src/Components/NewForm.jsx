@@ -44,7 +44,7 @@ function NewForm() {
 
   return (
     <>
-      <h3 className="text-center">Old result</h3>
+      <h3 className="text-center">New Result</h3>
       <div className="text-center">
         <Row className="mb-3 mx-1">
           <Form.Group as={Col} controlId="formGridEmail">

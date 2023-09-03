@@ -8,85 +8,54 @@ function NewForm() {
     high: "",
     low: "",
   });
- 
-
-  const [finalH, setFinalH] = useState("");
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-    console.log(formData);
+    if (name === "high") {
+      const newHigh = parseInt(value);
+      const newLow = 100 - newHigh;
+
+      setFormData({
+        ...formData,
+        high: newHigh.toString(),
+        low: newLow.toString(),
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
-  
-
-  useEffect(()=>{
-   if (formData.high == "" || formData.low == "") {
-      return setFinalH("בבקשה להכניס ערך ");
-    }
-
-    const regex = /^-?\d+(\.\d+)?$/;
-
-    if (regex.test(formData.high) && regex.test(formData.low)) {  
-        
-        const finalData = (70 * parseFloat(formData.high) + 40 * parseFloat(formData.low))/100;
-
-    setFinalH(finalData);
-    }else{
-        return setFinalH("הזנת מידע שגוי")
-    }
-
-  },[formData])
-
- 
-  
 
   return (
-    <>
-      <h3 className="text-center">New Result</h3>
-      <div className="text-center">
-        <Row className="mb-3 mx-1">
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>70 קושי גבוהה</Form.Label>
+    <Form>
+      <Row>
+        <Col>
+          <Form.Group>
+            <Form.Label>High Value</Form.Label>
             <Form.Control
               type="text"
-              placeholder="קושי גבוהה"
               name="high"
-              value={formData["קושי גבוהה"]}
+              value={formData.high}
               onChange={handleOnChange}
             />
           </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>40 קושי נמוך</Form.Label>
+        </Col>
+        <Col>
+          <Form.Group>
+            <Form.Label>Low Value</Form.Label>
             <Form.Control
               type="text"
-              placeholder="קושי נמוך"
-              
-              value={formData["קושי נמוך"]}
+              name="low"
+              value={formData.low}
               onChange={handleOnChange}
+              readOnly
             />
           </Form.Group>
-        </Row>
-
-        <div className="container text-center">
-          <div className="row justify-content-evenly">
-            <div className="col-3">
-            <div className="text-primary text-result">קושי   </div>
-            </div>
-            <div className="col-6">
-              <div className="result p-1 text-danger">{finalH}</div>
-            </div>
-          </div>
-          <br />
-
-        </div>
-      </div>
-    </>
+        </Col>
+      </Row>
+    </Form>
   );
 }
-
-export default NewForm;

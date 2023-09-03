@@ -8,6 +8,7 @@ function NewForm() {
     high: "",
     low: 100,
   });
+ const [newlowdata, setnewlowdata]= useState()
 
   const [finalH, setFinalH] = useState("");
 
@@ -30,8 +31,8 @@ function NewForm() {
     const regex = /^-?\d+(\.\d+)?$/;
 
     if (regex.test(formData.high) && regex.test(formData.low)) {  
-        
-        const finalData = (70 * parseFloat(formData.high) + 40 * parseFloat(formData.low))/100;
+        setnewlowdata(formData.low- formData.high)
+        const finalData = (70 * parseFloat(formData.high) + 40 * parseFloat(newlowdata))/100;
 
     setFinalH(finalData);
     }else{

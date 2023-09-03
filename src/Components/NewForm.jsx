@@ -6,9 +6,8 @@ import Row from "react-bootstrap/Row";
 function NewForm() {
   const [formData, setFormData] = useState({
     Newhigh: "",
-    Newlow: "",
   });
-
+  const [low, setLow] = useState(100);
   const [finalH, setFinalH] = useState("");
 
   const handleOnChange = (e) => {
@@ -21,26 +20,24 @@ function NewForm() {
     console.log(formData);
   };
 
-  useEffect(()=>{
-   if (formData.Newhigh == "" || formData.Newlow == "") {
-      return setFinalH("בבקשה להכניס ערך ");
+  useEffect(() => {
+    if (formData.Newhigh == "") {
+      return setFinalH("Enter Value");
     }
 
     const regex = /^-?\d+(\.\d+)?$/;
 
-    if (regex.test(formData.Newhigh) && regex.test(formData.Newlow)) {  
-        
-        const finalData = (70 * parseFloat(formData.Newhigh) + 40 * parseFloat(formData.Newlow))/100;
+    if (regex.test(formData.Newhigh)) {
+      const a = low - formData.Newhigh;
 
-    setFinalH(finalData);
-    }else{
-        return setFinalH("הזנת מידע שגוי")
+      const finalData =
+        (70 * parseFloat(formData.Newhigh) + 40 * parseFloat(a)) / 100;
+
+      setFinalH(finalData);
+    } else {
+      return setFinalH("Wrong Value");
     }
-
-  },[formData])
-
- 
-  
+  }, [formData]);
 
   return (
     <>
@@ -57,30 +54,18 @@ function NewForm() {
               onChange={handleOnChange}
             />
           </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>40 </Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="קושי נמוך"
-              name="Newlow"
-              value={formData.Newlow}
-              onChange={handleOnChange}
-            />
-          </Form.Group>
         </Row>
 
         <div className="container text-center">
           <div className="row justify-content-evenly">
             <div className="col-3">
-              <div className="text-primary text-result">קושי   </div>
+              <div className="text-primary text-result"> Final result </div>
             </div>
             <div className="col-6">
               <div className="result p-1 text-danger">{finalH}</div>
             </div>
           </div>
           <br />
-
         </div>
       </div>
     </>

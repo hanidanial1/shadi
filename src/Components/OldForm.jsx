@@ -21,25 +21,35 @@ function GridBasicExample() {
     console.log(formData);
   };
 
+  
   useEffect(() => {
     if (formData.high == "") {
-      setLowValue(100)
+      setLowValue(100);
       return setFinalH("Enter Value");
     }
-    const regex = /^-?\d+(\.\d+)?$/;
-    if (regex.test(formData.high)) {
-      const a = low -formData.high
 
-      setLowValue(a)
+    const regex = /^-?\d+(\.\d+)?$/;
+
+    if (regex.test(formData.high)) {
+      const a = low - formData.high;
+      setLowValue(a);
+
+      if (a + formData.high < 100) {
+  
+        setLowValue(100)
+
+        return setFinalH("the value higher than 100");
+      }
+
       const finalData =
-        (70 * parseFloat(formData.high) + 40 * parseFloat(a)) /
-        100;
+        (70 * parseFloat(formData.high) + 40 * parseFloat(a)) / 100;
+
       setFinalH(finalData);
+
     } else {
       return setFinalH("Wrong Value");
     }
   }, [formData]);
-
 
  
   

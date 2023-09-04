@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-
 function NewForm() {
   const [formData, setFormData] = useState({
     Newhigh: "",
   });
   const [low, setLow] = useState(100);
   const [finalH, setFinalH] = useState("");
-const [lowValue, setLowValue] = useState()
+  const [lowValue, setLowValue] = useState(0);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
@@ -22,21 +21,28 @@ const [lowValue, setLowValue] = useState()
 
   useEffect(() => {
     if (formData.Newhigh == "") {
-        setLowValue(100)
+      setLowValue(100);
       return setFinalH("Enter Value");
-
     }
 
     const regex = /^-?\d+(\.\d+)?$/;
 
     if (regex.test(formData.Newhigh)) {
       const a = low - formData.Newhigh;
-      setLowValue(a)
-      
+      setLowValue(a);
+
+      if (a + formData.Newhigh < 100) {
+  
+        setLowValue(100)
+
+        return setFinalH("the value higher than 100");
+      }
+
       const finalData =
         (70 * parseFloat(formData.Newhigh) + 40 * parseFloat(a)) / 100;
 
       setFinalH(finalData);
+
     } else {
       return setFinalH("Wrong Value");
     }
@@ -57,7 +63,6 @@ const [lowValue, setLowValue] = useState()
               onChange={handleOnChange}
             />
           </Form.Group>
-
 
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>40</Form.Label>

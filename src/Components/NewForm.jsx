@@ -61,6 +61,7 @@ function NewForm() {
               name="Newhigh"
               value={formData.Newhigh}
               onChange={handleOnChange}
+              style={{ textAlign: 'center' }}
             />
           </Form.Group>
 
@@ -72,6 +73,7 @@ function NewForm() {
               name="newLow"
               value={lowValue}
               onChange={handleOnChange}
+              style={{ textAlign: 'center' }}
             />
           </Form.Group>
         </Row>

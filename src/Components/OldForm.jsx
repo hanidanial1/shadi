@@ -9,6 +9,7 @@ function GridBasicExample() {
   });
   const [low, setLow] = useState(100);
   const [finalH, setFinalH] = useState("");
+  const [lowValue, setLowValue] = useState()
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -22,19 +23,17 @@ function GridBasicExample() {
 
   useEffect(() => {
     if (formData.high == "") {
+      setLowValue(100)
       return setFinalH("Enter Value");
     }
-
     const regex = /^-?\d+(\.\d+)?$/;
-
     if (regex.test(formData.high)) {
-
       const a = low -formData.high
- 
+
+      setLowValue(a)
       const finalData =
         (70 * parseFloat(formData.high) + 40 * parseFloat(a)) /
         100;
-
       setFinalH(finalData);
     } else {
       return setFinalH("Wrong Value");
@@ -62,6 +61,16 @@ function GridBasicExample() {
           </Form.Group>
 
 
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>40</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="low"
+              name="low"
+              value={lowValue}
+              onChange={handleOnChange}
+            />
+          </Form.Group>
         </Row>
 
         <div className="container text-center">

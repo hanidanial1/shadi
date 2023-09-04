@@ -9,7 +9,7 @@ function NewForm() {
   });
   const [low, setLow] = useState(100);
   const [finalH, setFinalH] = useState("");
-
+const [lowValue, setLowValue] = useState()
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
@@ -22,14 +22,17 @@ function NewForm() {
 
   useEffect(() => {
     if (formData.Newhigh == "") {
+        setLowValue(100)
       return setFinalH("Enter Value");
+
     }
 
     const regex = /^-?\d+(\.\d+)?$/;
 
     if (regex.test(formData.Newhigh)) {
       const a = low - formData.Newhigh;
-
+      setLowValue(a)
+      
       const finalData =
         (70 * parseFloat(formData.Newhigh) + 40 * parseFloat(a)) / 100;
 
@@ -54,8 +57,19 @@ function NewForm() {
               onChange={handleOnChange}
             />
           </Form.Group>
-        </Row>
 
+
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>40</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="low"
+              name="newLow"
+              value={lowValue}
+              onChange={handleOnChange}
+            />
+          </Form.Group>
+        </Row>
         <div className="container text-center">
           <div className="row justify-content-evenly">
             <div className="col-3">

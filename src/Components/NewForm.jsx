@@ -55,6 +55,7 @@ const [lowValue, setLowValue] = useState()
               name="Newhigh"
               value={formData.Newhigh}
               onChange={handleOnChange}
+              style={{ textAlign: 'center' }}
             />
           </Form.Group>
 
@@ -67,6 +68,7 @@ const [lowValue, setLowValue] = useState()
               name="newLow"
               value={lowValue}
               onChange={handleOnChange}
+              style={{ textAlign: 'center' }}
             />
           </Form.Group>
         </Row>
